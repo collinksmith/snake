@@ -1,0 +1,51 @@
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.grid {
+  margin: 0 auto;
+  width: 235px;
+  border: 5px solid black;
+}
+
+.cell {
+  float: left;
+  border-right: 5px solid black;
+  width: 75px;
+  height: 75px;
+  background-color: grey;
+}
+
+.cell.unclicked:hover {
+  background: yellow;
+}
+
+.cell:last-child {
+  border-right: 0px;
+}
+
+.row {
+  width: 235px;
+  height: 75px;
+  border-bottom: 5px solid black;
+}
+
+.row:last-child {
+  border-bottom: 0px;
+}
