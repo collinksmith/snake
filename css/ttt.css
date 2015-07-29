@@ -32,6 +32,27 @@ h1, h2, p, strong, em, a {
   background-color: grey;
 }
 
+.cell.o, .cell.x {
+  background: white;
+}
+
+.cell.x::before, .cell.o::before {
+  position: absolute;
+  font-size: 60px;
+  transform: translateX(35%) translateY(10%);
+  color: black;
+  width: 50px;
+  height: 50px;
+}
+
+.cell.x::before {
+  content: "X";
+}
+
+.cell.o::before {
+  content: "O";
+}
+
 .cell.unclicked:hover {
   background: yellow;
 }
