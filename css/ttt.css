@@ -61,6 +61,16 @@ h1, h2, p, strong, em, a {
   border-right: 0px;
 }
 
+.winner-msg {
+  text-align: center;
+  font-size: 42px;
+}
+
+.title {
+  text-align: center;
+  font-size: 60px;
+}
+
 .row {
   width: 235px;
   height: 75px;

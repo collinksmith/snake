@@ -7,7 +7,6 @@
     this.game = game;
     this.$grid = $("<div></div>").addClass('grid');
     this.$el = $el;
-    console.log(this);
     this.setupBoard();
     this.bindEvents();
   };
@@ -21,8 +20,27 @@
   };
 
   View.prototype.makeMove = function ($square) {
-    $square.addClass('x');
-    $square.toggleClass('unclicked');
+    var currentMark = this.game.currentPlayer;
+
+    try {
+      this.game.playMove([$square.data('row'), $square.data('col')]);
+      $square.addClass(currentMark);
+      $square.toggleClass('unclicked');
+    } catch (e) {
+      if (e.msg === "Is not an empty position!") {
+        alert("Invalid move.");
+      } else {
+        throw e;
+      }
+    }
+
+    if (this.game.winner()) {
+      var winnerMsg = $("<h2></h2>")
+                        .text("You win, " + this.game.winner() + "!")
+                        .addClass("winner-msg");
+      this.$el.append(winnerMsg);
+      this.$grid.off();
+    }
   };
 
   View.prototype.setupBoard = function () {

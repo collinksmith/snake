@@ -10,12 +10,13 @@
     <!-- Whackjobs at GithubPages don't understand symlinks... -->
     <script src="../ttt-core-solution/ttt-core.js"></script>
     <script src="../js/ttt-view.js"></script>
-
+    <h1 class="title">Tic Tac Toe</h1>
     <div class="game"></div>
 
     <script>
       $(function () {
-        var view = new TTT.View(null, $('.game'));
+        var game = new TTT.Game();
+        var view = new TTT.View(game, $('.game'));
       })
     </script>
   </body>
