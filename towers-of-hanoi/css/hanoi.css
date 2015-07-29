@@ -1,0 +1,58 @@
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.disc {
+  height: 10px;
+  background: yellow;
+  position: absolute;
+  margin: 0 auto;
+  transform: translateX(-50%)translateX(30px);
+
+}
+
+.tower {
+  width: 60px;
+  height: 60px;
+  float: left;
+  position: relative;
+  margin: 5px;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.tower::before {
+  content: '';
+  display: block;
+  width: 5px;
+  top: 0px;
+  bottom: 0px;
+  background: grey;
+  position: absolute;
+  transform: translateX(30px);
+}
+
+.game {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.selected-tower::before {
+  background: red;
+}
