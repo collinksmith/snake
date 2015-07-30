@@ -5,7 +5,11 @@
 
   var Snake = window.Snake = function () {
     this.dir = "N";
-    this.segments = [new Coord(4, 4), new Coord(4, 5)];
+    this.segments = [new Coord(4, 4),
+                     new Coord(4, 5),
+                     new Coord(5, 5),
+                     new Coord(5, 6),
+                     new Coord(6, 6)];
   };
 
   Snake.prototype.move = function () {
@@ -16,7 +20,36 @@
   };
 
   Snake.prototype.turn = function (dir) {
-    this.dir = dir;
+    if (this.isOpposite(this.dir, dir)) {
+      throw {name: "GameOver", message: "Snake ran back into itself"};
+    } else {
+      this.dir = dir;
+    }
+  };
+
+  Snake.prototype.isOpposite = function (dir, newDir) {
+    switch (dir) {
+    case 'N':{
+      if (newDir === 'S') {
+        return true;
+      }
+      break;
+    }
+    case 'S':
+      if (newDir === 'N') {
+        return true;
+      }
+      break;
+    case 'E':
+      if (newDir === 'W') {
+        return true;
+      }
+      break;
+    case 'W':
+      if (newDir === 'E') {
+        return true;
+      }
+    }
   };
 
   var Coord = Snake.Coord = function (x, y) {
@@ -39,10 +72,6 @@
 
   Coord.prototype.equals = function (x, y) {
     return this.x === x && this.y === y;
-  };
-
-  Coord.prototype.isOpposite = function () {
-
   };
 
   var Board = Snake.Board = function () {
@@ -76,7 +105,7 @@
 
     this.snake.segments.forEach(function (coord) {
       if (self.offBoard(coord)) {
-        throw "Off Board";
+        throw {name: "GameOver", message: "Snake ran off the board"};
       }
       var row = rows[coord.y];
       row = row.slice(0,coord.x) + "S" + row.slice(coord.x + 1);
@@ -91,5 +120,4 @@
   Board.prototype.offBoard = function (coord) {
     return coord.x > 7 || coord.x < 0 || coord.y > 7 || coord.y < 0;
   };
-
 })();

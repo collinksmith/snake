@@ -9,12 +9,10 @@
     this.$el = $el;
     this.board = new Board();
     $(document).keydown(this.handleKeyEvent.bind(this));
-
-    this. interval = setInterval(this.step.bind(this), 500);
+    this.interval = setInterval(this.step.bind(this), 500);
   };
 
   View.prototype.handleKeyEvent = function (event) {
-    console.log(event.keyCode);
     switch (event.keyCode) {
       case 87:  // w
         this.board.snake.turn('N');
@@ -35,7 +33,8 @@
       this.board.snake.move();
       this.$el.html(this.board.render());
     } catch (e) {
-      if (e === "Off Board") {
+      console.log(e);
+      if (e.name === "GameOver") {
         clearInterval(this.interval);
       } else {
         throw e;
