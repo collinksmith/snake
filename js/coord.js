@@ -1,5 +1,5 @@
 ;(function () {
-  if (typeof Snake === undefined) {
+  if (typeof Snake === "undefined") {
     window.Snake = {};
   }
 
